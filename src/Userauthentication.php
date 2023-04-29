@@ -2,33 +2,23 @@
 
 include_once "config/bootstrap.php";
 
-class Userauthentication{
+class Userauthentication extends P{
     public static $pdo;
 
 
-    // get all products
-    public function getUsers(){
-        $stmt=self::$pdo->prepare("SELECT * FROM Users");
-        $stmt->setFetchMode(PDO::FETCH_CLASS, "Userauthentication");
-        $stmt->execute();
-        $users=$stmt->fetchAll();
-        return $users;
-    }
+    
 
     // clear data
-    private function clearData($data){
-        return htmlspecialchars(strip_tags($data));
-    }
+   
 
     // check user 
     private function checkUser($useremail){
-        $users=$this->getUsers();
+        $users=$this->getAllData("Users", "Userauthentication");
         foreach($users as $user){
-            if($user->useremail===$useremail){
+            if($user->useremail==$useremail){
                 return false;
-            }else{
-                return true;
             }
+            return false;
 
         }
         return "success";
@@ -56,6 +46,10 @@ class Userauthentication{
         }
         
     }
+
+
+    // update users
+    // 
 
 
 }
