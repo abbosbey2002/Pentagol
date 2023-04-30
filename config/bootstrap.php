@@ -7,3 +7,5 @@ $pdo=$database->connect();
 Userauthentication::$pdo=$pdo;
 Post::$pdo=$pdo;
 P::$pdo=$pdo;
+Game::$pdo=$pdo;
+Teams::$pdo=$pdo;

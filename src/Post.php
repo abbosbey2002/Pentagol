@@ -32,8 +32,8 @@ class Post extends P{
 
     public function updatePost($id, $title, $image, $descr, $type){
         // clear data
-        $id=$this->$this->clearData($id);
-        $title=$this->$this->clearData($title);
+        $id=$this->clearData($id);
+        $title=$this->clearData($title);
         $image=$this->clearData($image);
         $descr=$this->clearData($descr);
         $type=$this->clearData($type);
@@ -47,13 +47,17 @@ class Post extends P{
     $stmt->bindParam(':image', $image);
     $stmt->bindParam(':descr', $descr);
     $stmt->bindParam(':type', $type);
+    $stmt->bindParam(':id', $id);
     // res echo
-    if($stmt->execute()) {
-        return true;
-      }
+    $stmt->execute([
+        "title"=>$title,
+        "image"=>$image,
+        "descr"=>$descr,
+        "type"=>$type,
+        "id"=>$id
+    ]);
+
+
     }
-
-
-
 
 }
